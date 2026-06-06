@@ -1,0 +1,154 @@
+x-airflow-common: &airflow-common
+  image: apache/airflow:3.0.2
+  restart: unless-stopped
+  environment: &airflow-common-env
+    AIRFLOW__CORE__EXECUTOR: LocalExecutor
+    AIRFLOW__DATABASE__SQL_ALCHEMY_CONN: postgresql+psycopg2://airflow:airflow@postgres/airflow
+    AIRFLOW__CORE__FERNET_KEY: ${AIRFLOW_FERNET_KEY}
+    AIRFLOW__CORE__DAGS_ARE_PAUSED_AT_CREATION: "true"
+    AIRFLOW__CORE__LOAD_EXAMPLES: "false"
+    AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_USERS: "${AIRFLOW_ADMIN_USERNAME:-admin}:Admin"
+    AIRFLOW__CORE__SIMPLE_AUTH_MANAGER_PASSWORDS_FILE: /opt/airflow-secrets/passwords.json
+    AIRFLOW__CORE__EXECUTION_API_SERVER_URL: "http://airflow-apiserver:8080/execution/"
+    AIRFLOW_ADMIN_USERNAME: ${AIRFLOW_ADMIN_USERNAME:-admin}
+    AIRFLOW_ADMIN_PASSWORD: ${AIRFLOW_ADMIN_PASSWORD:-admin}
+    AIRFLOW__API_AUTH__JWT_SECRET: ${AIRFLOW_JWT_SECRET}
+    # Install project dependencies on container startup
+    _PIP_ADDITIONAL_REQUIREMENTS: "httpx==0.28.1 pydantic==2.11.5 clickhouse-connect==0.8.17 tenacity==9.1.2 pyyaml==6.0.2"
+    # Project env
+    CSFLOAT_API_KEY: ${CSFLOAT_API_KEY}
+    CLICKHOUSE_HOST: clickhouse
+    CLICKHOUSE_PORT: "8123"
+    CLICKHOUSE_DB: default
+    # Paths inside the container
+    SKINS_CONFIG_PATH: /opt/airflow/dags/config/starter_skins.yaml
+    QUARANTINE_PATH: /opt/airflow/quarantine
+  volumes:
+    - ./dags:/opt/airflow/dags
+    - ./logs:/opt/airflow/logs
+    - ./src:/opt/airflow/dags/src          # on Airflow's sys.path via dags folder
+    - ./config:/opt/airflow/dags/config    # on Airflow's sys.path via dags folder
+    - ./quarantine:/opt/airflow/quarantine
+    - airflow-secrets:/opt/airflow-secrets
+  user: "${AIRFLOW_UID:-1000}:0"
+  depends_on: &airflow-common-depends-on
+    postgres:
+      condition: service_healthy
+
+services:
+  postgres:
+    image: postgres:15
+    restart: unless-stopped
+    environment:
+      POSTGRES_USER: airflow
+      POSTGRES_PASSWORD: airflow
+      POSTGRES_DB: airflow
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD", "pg_isready", "-U", "airflow"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+  airflow-init:
+    <<: *airflow-common
+    restart: no
+    entrypoint: /bin/bash
+    command:
+      - -c
+      - |
+        pip install httpx==0.28.1 pydantic==2.11.5 clickhouse-connect==0.8.17 tenacity==9.1.2 pyyaml==6.0.2 --quiet
+        airflow db migrate
+        printf '{"admin":"%s"}' "${AIRFLOW_ADMIN_PASSWORD}" > /opt/airflow-secrets/passwords.json
+        chown -R "${AIRFLOW_UID}:0" /opt/airflow-secrets
+        mkdir -p /opt/airflow/logs/dag_processor /opt/airflow/logs/scheduler /opt/airflow/logs/triggerer
+        chown -R "${AIRFLOW_UID}:0" /opt/airflow/logs
+        mkdir -p /opt/airflow/quarantine
+        chown -R "${AIRFLOW_UID}:0" /opt/airflow/quarantine
+        echo "Airflow init complete"
+    environment:
+      <<: *airflow-common-env
+    user: "0:0"
+    depends_on:
+      postgres:
+        condition: service_healthy
+
+  airflow-apiserver:
+    <<: *airflow-common
+    command: api-server
+    ports:
+      - "8088:8080"
+    healthcheck:
+      test: ["CMD", "curl", "--fail", "http://localhost:8080/api/v2/monitor/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-scheduler:
+    <<: *airflow-common
+    command: scheduler
+    healthcheck:
+      test: ["CMD", "airflow", "jobs", "check", "--job-type", "SchedulerJob"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-dag-processor:
+    <<: *airflow-common
+    command: dag-processor
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  airflow-triggerer:
+    <<: *airflow-common
+    command: triggerer
+    healthcheck:
+      test: ["CMD", "airflow", "jobs", "check", "--job-type", "TriggererJob"]
+      interval: 30s
+      timeout: 10s
+      retries: 5
+      start_period: 60s
+    depends_on:
+      <<: *airflow-common-depends-on
+      airflow-init:
+        condition: service_completed_successfully
+
+  clickhouse:
+    image: clickhouse/clickhouse-server:24.3
+    restart: unless-stopped
+    ports:
+      - "8023:8123"   # HTTP interface
+      - "9000:9000"   # Native TCP interface
+    volumes:
+      - ./clickhouse-data:/var/lib/clickhouse
+      - ./sql:/docker-entrypoint-initdb.d
+      - ./clickhouse-config:/etc/clickhouse-server/users.d
+    ulimits:
+      nproc: 65535
+      nofile:
+        soft: 262144
+        hard: 262144
+    healthcheck:
+      test: ["CMD", "clickhouse-client", "--query", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 20s
+
+volumes:
+  postgres-data:
+  airflow-secrets:

@@ -1,0 +1,31 @@
+.env
+*.env
+
+# Airflow generated config
+**/config/airflow.cfg
+
+# Python leftovers
+**/__pycache__/
+**/*.pyc
+**/*.pyo
+
+# Airflow logs
+**/logs/
+
+# ClickHouse data volume
+clickhouse-data/
+
+# Storage from failed pydantic validation
+quarantine/
+
+# Pytest cache
+.pytest_cache/
+**/.pytest_cache/
+
+# IDE noise
+.DS_Store
+.idea/
+.vscode/
+
+*.md
+clickhouse-config/
