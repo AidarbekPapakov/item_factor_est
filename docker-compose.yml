@@ -21,7 +21,7 @@ x-airflow-common: &airflow-common
     CLICKHOUSE_PORT: "8123"
     CLICKHOUSE_DB: default
     # Paths inside the container
-    SKINS_CONFIG_PATH: /opt/airflow/dags/config/starter_skins.yaml
+    SKINS_CONFIG_PATH: /opt/airflow/dags/config/
     QUARANTINE_PATH: /opt/airflow/quarantine
   volumes:
     - ./dags:/opt/airflow/dags
