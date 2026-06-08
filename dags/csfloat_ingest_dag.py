@@ -11,9 +11,9 @@ from src.ingest.clickhouse_loader import insert_sales, validate_and_flatten
 
 log = logging.getLogger(__name__)
 
-SKINS_PATH = os.environ.get(
+SKINS_FOLDER_PATH = os.environ.get(
     "SKINS_CONFIG_PATH",
-    os.path.join(os.path.dirname(__file__), "config", "starter_skins.yaml"),
+    os.path.join(os.path.dirname(__file__), "config"),
 )
 
 config: Dict[str, str] = {
@@ -21,6 +21,7 @@ config: Dict[str, str] = {
     'CH_HOST': 'CH_HOST_KEY',
     'CH_PORT': 'CH_PORT_KEY',
     'CH_DB': 'CH_DB_KEY',
+    'skins_file': 'skins_file_key'
 }
 
 
@@ -41,7 +42,10 @@ def csfloat_ingest_dag():
 
     @task()
     def get_skins() -> List[Dict[str, Any]]:
-        with open(SKINS_PATH) as f:
+
+        skins_file: str = os.path.join(SKINS_FOLDER_PATH, Variable.get(config['skins_file']))
+
+        with open(skins_file) as f:
             return yaml.safe_load(f)["skins"]
 
     @task()
