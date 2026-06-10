@@ -90,10 +90,12 @@ def insert_sales(
     host: str,
     port: int,
     database: str,
+    user: str,
+    password: str,
 ) -> None:
     if not rows:
         return
-    client = clickhouse_connect.get_client(host=host, port=port, database=database)
+    client = clickhouse_connect.get_client(host=host, port=port, database=database, username=user, password=password)
     try:
         column_names = list(rows[0].keys())
         data = [[r[col] for col in column_names] for r in rows]

@@ -58,6 +58,10 @@ def csfloat_ingest_dag():
         CH_PORT: str = Variable.get(config['CH_PORT'])
         CH_DB: str = Variable.get(config['CH_DB'])
 
+        # ClickHouse creds
+        CH_USER: str = os.environ.get('CLICKHOUSE_USER')
+        CH_PASSWORD: str = os.environ.get('CLICKHOUSE_PASSWORD')
+
         name = skin["market_hash_name"]
         paint_index = skin.get("paint_index")
 
@@ -69,7 +73,11 @@ def csfloat_ingest_dag():
             return {"skin": name, "rows_inserted": 0}
 
         flat = validate_and_flatten(raw, snapshot_date)
-        insert_sales(flat, host=CH_HOST, port=CH_PORT, database=CH_DB)
+        insert_sales(
+            flat, 
+            host=CH_HOST, port=CH_PORT, database=CH_DB,
+            user=CH_USER, password=CH_PASSWORD,    
+        )
         log.info("Inserted %d rows for %s", len(flat), name)
         return {"skin": name, "rows_inserted": len(flat)}
 

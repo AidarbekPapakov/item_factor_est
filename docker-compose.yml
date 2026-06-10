@@ -20,6 +20,8 @@ x-airflow-common: &airflow-common
     CLICKHOUSE_HOST: clickhouse
     CLICKHOUSE_PORT: "8123"
     CLICKHOUSE_DB: default
+    CLICKHOUSE_USER: ${CLICKHOUSE_USER}
+    CLICKHOUSE_PASSWORD: ${CLICKHOUSE_PASSWORD}
     # Paths inside the container
     SKINS_CONFIG_PATH: /opt/airflow/dags/config/
     QUARANTINE_PATH: /opt/airflow/quarantine
