@@ -27,10 +27,10 @@ config: Dict[str, str] = {
 
 @dag(
     dag_id="csfloat_ingest",
-    schedule="@daily",
+    schedule="@once",
     start_date=datetime(2026, 1, 1),
     catchup=False,
-    max_active_tasks=1,  # serialize: concurrent tasks would race on shared rate-limit bucket
+    max_active_tasks=2,  # serialize: concurrent tasks would race on shared rate-limit bucket
     default_args={
         "retries": 3,
         "retry_delay": timedelta(minutes=1),
