@@ -32,9 +32,10 @@ config: Dict[str, str] = {
     catchup=False,
     max_active_tasks=2,  # serialize: concurrent tasks would race on shared rate-limit bucket
     default_args={
-        "retries": 3,
-        "retry_delay": timedelta(minutes=1),
+        "retries": 2,
+        "retry_delay": timedelta(seconds=30),
         "owner": "Aidar",
+        "execution_timeout": timedelta(seconds=300) # Timeout task after being idle for >5 minutes
     },
     tags=["csfloat", "skins"],
 )
@@ -44,6 +45,8 @@ def csfloat_ingest_dag():
     def get_skins() -> List[Dict[str, Any]]:
 
         skins_file: str = os.path.join(SKINS_FOLDER_PATH, Variable.get(config['skins_file']))
+
+        log.info(f"Processing {os.path.split(skins_file)[-1]}")
 
         with open(skins_file) as f:
             return yaml.safe_load(f)["skins"]
