@@ -2,8 +2,370 @@
 # Excludes shotguns & machineguns, souvenir, skins already in starter_skins.yaml (batch 0).
 # Filtering criteria: >500 total listings across all exteriors, >5 cents.
 # StatTrak variants are omitted
-# Icludes: SSG 08, Zeus x27, CZ75-Auto
+# Includes: SG 553, SSG 08, Zeus x27, CZ75-Auto
 skins:
+- market_hash_name: SG 553 | Desert Blossom (Factory New)
+  paint_index: 765
+- market_hash_name: SG 553 | Desert Blossom (Minimal Wear)
+  paint_index: 765
+- market_hash_name: SG 553 | Desert Blossom (Field-Tested)
+  paint_index: 765
+- market_hash_name: SG 553 | Desert Blossom (Well-Worn)
+  paint_index: 765
+- market_hash_name: SG 553 | Desert Blossom (Battle-Scarred)
+  paint_index: 765
+- market_hash_name: SG 553 | Lush Ruins (Factory New)
+  paint_index: 1022
+- market_hash_name: SG 553 | Lush Ruins (Minimal Wear)
+  paint_index: 1022
+- market_hash_name: SG 553 | Lush Ruins (Field-Tested)
+  paint_index: 1022
+- market_hash_name: SG 553 | Lush Ruins (Well-Worn)
+  paint_index: 1022
+- market_hash_name: SG 553 | Lush Ruins (Battle-Scarred)
+  paint_index: 1022
+- market_hash_name: SG 553 | Hypnotic (Factory New)
+  paint_index: 61
+- market_hash_name: SG 553 | Hypnotic (Minimal Wear)
+  paint_index: 61
+- market_hash_name: SG 553 | Army Sheen (Factory New)
+  paint_index: 298
+- market_hash_name: SG 553 | Army Sheen (Minimal Wear)
+  paint_index: 298
+- market_hash_name: SG 553 | Army Sheen (Field-Tested)
+  paint_index: 298
+- market_hash_name: SG 553 | Anodized Navy (Factory New)
+  paint_index: 28
+- market_hash_name: SG 553 | Anodized Navy (Minimal Wear)
+  paint_index: 28
+- market_hash_name: SG 553 | Damascus Steel (Factory New)
+  paint_index: 247
+- market_hash_name: SG 553 | Damascus Steel (Minimal Wear)
+  paint_index: 247
+- market_hash_name: SG 553 | Damascus Steel (Field-Tested)
+  paint_index: 247
+- market_hash_name: SG 553 | Damascus Steel (Well-Worn)
+  paint_index: 247
+- market_hash_name: SG 553 | Damascus Steel (Battle-Scarred)
+  paint_index: 247
+- market_hash_name: SG 553 | Traveler (Factory New)
+  paint_index: 363
+- market_hash_name: SG 553 | Traveler (Minimal Wear)
+  paint_index: 363
+- market_hash_name: SG 553 | Traveler (Field-Tested)
+  paint_index: 363
+- market_hash_name: SG 553 | Traveler (Well-Worn)
+  paint_index: 363
+- market_hash_name: SG 553 | Traveler (Battle-Scarred)
+  paint_index: 363
+- market_hash_name: SG 553 | Aerial (Factory New)
+  paint_index: 598
+- market_hash_name: SG 553 | Aerial (Minimal Wear)
+  paint_index: 598
+- market_hash_name: SG 553 | Aerial (Field-Tested)
+  paint_index: 598
+- market_hash_name: SG 553 | Aerial (Well-Worn)
+  paint_index: 598
+- market_hash_name: SG 553 | Aerial (Battle-Scarred)
+  paint_index: 598
+- market_hash_name: SG 553 | Atlas (Factory New)
+  paint_index: 553
+- market_hash_name: SG 553 | Atlas (Minimal Wear)
+  paint_index: 553
+- market_hash_name: SG 553 | Atlas (Field-Tested)
+  paint_index: 553
+- market_hash_name: SG 553 | Atlas (Well-Worn)
+  paint_index: 553
+- market_hash_name: SG 553 | Atlas (Battle-Scarred)
+  paint_index: 553
+- market_hash_name: SG 553 | Hazard Pay (Factory New)
+  paint_index: 1084
+- market_hash_name: SG 553 | Hazard Pay (Minimal Wear)
+  paint_index: 1084
+- market_hash_name: SG 553 | Hazard Pay (Field-Tested)
+  paint_index: 1084
+- market_hash_name: SG 553 | Hazard Pay (Well-Worn)
+  paint_index: 1084
+- market_hash_name: SG 553 | Hazard Pay (Battle-Scarred)
+  paint_index: 1084
+- market_hash_name: SG 553 | Dragon Tech (Factory New)
+  paint_index: 1151
+- market_hash_name: SG 553 | Dragon Tech (Minimal Wear)
+  paint_index: 1151
+- market_hash_name: SG 553 | Dragon Tech (Field-Tested)
+  paint_index: 1151
+- market_hash_name: SG 553 | Dragon Tech (Well-Worn)
+  paint_index: 1151
+- market_hash_name: SG 553 | Dragon Tech (Battle-Scarred)
+  paint_index: 1151
+- market_hash_name: SG 553 | Cyberforce (Factory New)
+  paint_index: 1234
+- market_hash_name: SG 553 | Cyberforce (Minimal Wear)
+  paint_index: 1234
+- market_hash_name: SG 553 | Cyberforce (Field-Tested)
+  paint_index: 1234
+- market_hash_name: SG 553 | Cyberforce (Well-Worn)
+  paint_index: 1234
+- market_hash_name: SG 553 | Cyberforce (Battle-Scarred)
+  paint_index: 1234
+- market_hash_name: SG 553 | Cyrex (Factory New)
+  paint_index: 487
+- market_hash_name: SG 553 | Cyrex (Minimal Wear)
+  paint_index: 487
+- market_hash_name: SG 553 | Cyrex (Field-Tested)
+  paint_index: 487
+- market_hash_name: SG 553 | Cyrex (Well-Worn)
+  paint_index: 487
+- market_hash_name: SG 553 | Cyrex (Battle-Scarred)
+  paint_index: 487
+- market_hash_name: SG 553 | Darkwing (Factory New)
+  paint_index: 955
+- market_hash_name: SG 553 | Darkwing (Minimal Wear)
+  paint_index: 955
+- market_hash_name: SG 553 | Darkwing (Field-Tested)
+  paint_index: 955
+- market_hash_name: SG 553 | Darkwing (Well-Worn)
+  paint_index: 955
+- market_hash_name: SG 553 | Darkwing (Battle-Scarred)
+  paint_index: 955
+- market_hash_name: SG 553 | Pulse (Minimal Wear)
+  paint_index: 287
+- market_hash_name: SG 553 | Pulse (Field-Tested)
+  paint_index: 287
+- market_hash_name: SG 553 | Pulse (Well-Worn)
+  paint_index: 287
+- market_hash_name: SG 553 | Pulse (Battle-Scarred)
+  paint_index: 287
+- market_hash_name: SG 553 | Integrale (Factory New)
+  paint_index: 750
+- market_hash_name: SG 553 | Integrale (Minimal Wear)
+  paint_index: 750
+- market_hash_name: SG 553 | Integrale (Field-Tested)
+  paint_index: 750
+- market_hash_name: SG 553 | Integrale (Well-Worn)
+  paint_index: 750
+- market_hash_name: SG 553 | Integrale (Battle-Scarred)
+  paint_index: 750
+- market_hash_name: SG 553 | Colony IV (Factory New)
+  paint_index: 897
+- market_hash_name: SG 553 | Colony IV (Minimal Wear)
+  paint_index: 897
+- market_hash_name: SG 553 | Colony IV (Field-Tested)
+  paint_index: 897
+- market_hash_name: SG 553 | Colony IV (Well-Worn)
+  paint_index: 897
+- market_hash_name: SG 553 | Colony IV (Battle-Scarred)
+  paint_index: 897
+- market_hash_name: SG 553 | Triarch (Factory New)
+  paint_index: 613
+- market_hash_name: SG 553 | Triarch (Minimal Wear)
+  paint_index: 613
+- market_hash_name: SG 553 | Triarch (Field-Tested)
+  paint_index: 613
+- market_hash_name: SG 553 | Triarch (Well-Worn)
+  paint_index: 613
+- market_hash_name: SG 553 | Triarch (Battle-Scarred)
+  paint_index: 613
+- market_hash_name: SG 553 | Berry Gel Coat (Factory New)
+  paint_index: 901
+- market_hash_name: SG 553 | Berry Gel Coat (Minimal Wear)
+  paint_index: 901
+- market_hash_name: SG 553 | Berry Gel Coat (Field-Tested)
+  paint_index: 901
+- market_hash_name: SG 553 | Berry Gel Coat (Well-Worn)
+  paint_index: 901
+- market_hash_name: SG 553 | Berry Gel Coat (Battle-Scarred)
+  paint_index: 901
+- market_hash_name: SG 553 | Heavy Metal (Factory New)
+  paint_index: 1048
+- market_hash_name: SG 553 | Heavy Metal (Minimal Wear)
+  paint_index: 1048
+- market_hash_name: SG 553 | Heavy Metal (Field-Tested)
+  paint_index: 1048
+- market_hash_name: SG 553 | Heavy Metal (Well-Worn)
+  paint_index: 1048
+- market_hash_name: SG 553 | Heavy Metal (Battle-Scarred)
+  paint_index: 1048
+- market_hash_name: SG 553 | Danger Close (Factory New)
+  paint_index: 815
+- market_hash_name: SG 553 | Danger Close (Minimal Wear)
+  paint_index: 815
+- market_hash_name: SG 553 | Danger Close (Field-Tested)
+  paint_index: 815
+- market_hash_name: SG 553 | Danger Close (Well-Worn)
+  paint_index: 815
+- market_hash_name: SG 553 | Danger Close (Battle-Scarred)
+  paint_index: 815
+- market_hash_name: SG 553 | Phantom (Factory New)
+  paint_index: 686
+- market_hash_name: SG 553 | Phantom (Minimal Wear)
+  paint_index: 686
+- market_hash_name: SG 553 | Phantom (Field-Tested)
+  paint_index: 686
+- market_hash_name: SG 553 | Phantom (Well-Worn)
+  paint_index: 686
+- market_hash_name: SG 553 | Phantom (Battle-Scarred)
+  paint_index: 686
+- market_hash_name: SG 553 | Ol' Rusty (Factory New)
+  paint_index: 966
+- market_hash_name: SG 553 | Ol' Rusty (Minimal Wear)
+  paint_index: 966
+- market_hash_name: SG 553 | Ol' Rusty (Field-Tested)
+  paint_index: 966
+- market_hash_name: SG 553 | Ol' Rusty (Well-Worn)
+  paint_index: 966
+- market_hash_name: SG 553 | Ol' Rusty (Battle-Scarred)
+  paint_index: 966
+- market_hash_name: SG 553 | Tiger Moth (Factory New)
+  paint_index: 519
+- market_hash_name: SG 553 | Tiger Moth (Minimal Wear)
+  paint_index: 519
+- market_hash_name: SG 553 | Tiger Moth (Field-Tested)
+  paint_index: 519
+- market_hash_name: SG 553 | Tiger Moth (Well-Worn)
+  paint_index: 519
+- market_hash_name: SG 553 | Tiger Moth (Battle-Scarred)
+  paint_index: 519
+- market_hash_name: SG 553 | Basket Halftone (Factory New)
+  paint_index: 1320
+- market_hash_name: SG 553 | Basket Halftone (Minimal Wear)
+  paint_index: 1320
+- market_hash_name: SG 553 | Basket Halftone (Field-Tested)
+  paint_index: 1320
+- market_hash_name: SG 553 | Basket Halftone (Well-Worn)
+  paint_index: 1320
+- market_hash_name: SG 553 | Basket Halftone (Battle-Scarred)
+  paint_index: 1320
+- market_hash_name: SG 553 | Safari Print (Factory New)
+  paint_index: 1394
+- market_hash_name: SG 553 | Safari Print (Minimal Wear)
+  paint_index: 1394
+- market_hash_name: SG 553 | Safari Print (Field-Tested)
+  paint_index: 1394
+- market_hash_name: SG 553 | Safari Print (Well-Worn)
+  paint_index: 1394
+- market_hash_name: SG 553 | Safari Print (Battle-Scarred)
+  paint_index: 1394
+- market_hash_name: SG 553 | Ultraviolet (Factory New)
+  paint_index: 98
+- market_hash_name: SG 553 | Ultraviolet (Minimal Wear)
+  paint_index: 98
+- market_hash_name: SG 553 | Ultraviolet (Field-Tested)
+  paint_index: 98
+- market_hash_name: SG 553 | Ultraviolet (Well-Worn)
+  paint_index: 98
+- market_hash_name: SG 553 | Ultraviolet (Battle-Scarred)
+  paint_index: 98
+- market_hash_name: SG 553 | Candy Apple (Factory New)
+  paint_index: 864
+- market_hash_name: SG 553 | Candy Apple (Minimal Wear)
+  paint_index: 864
+- market_hash_name: SG 553 | Candy Apple (Field-Tested)
+  paint_index: 864
+- market_hash_name: SG 553 | Candy Apple (Well-Worn)
+  paint_index: 864
+- market_hash_name: SG 553 | Candy Apple (Battle-Scarred)
+  paint_index: 864
+- market_hash_name: SG 553 | Tornado (Factory New)
+  paint_index: 101
+- market_hash_name: SG 553 | Tornado (Minimal Wear)
+  paint_index: 101
+- market_hash_name: SG 553 | Tornado (Field-Tested)
+  paint_index: 101
+- market_hash_name: SG 553 | Tornado (Well-Worn)
+  paint_index: 101
+- market_hash_name: SG 553 | Tornado (Battle-Scarred)
+  paint_index: 101
+- market_hash_name: SG 553 | Bulldozer (Factory New)
+  paint_index: 39
+- market_hash_name: SG 553 | Bulldozer (Minimal Wear)
+  paint_index: 39
+- market_hash_name: SG 553 | Bulldozer (Field-Tested)
+  paint_index: 39
+- market_hash_name: SG 553 | Bulldozer (Well-Worn)
+  paint_index: 39
+- market_hash_name: SG 553 | Bulldozer (Battle-Scarred)
+  paint_index: 39
+- market_hash_name: SG 553 | Night Camo (Factory New)
+  paint_index: 1270
+- market_hash_name: SG 553 | Night Camo (Minimal Wear)
+  paint_index: 1270
+- market_hash_name: SG 553 | Night Camo (Field-Tested)
+  paint_index: 1270
+- market_hash_name: SG 553 | Night Camo (Well-Worn)
+  paint_index: 1270
+- market_hash_name: SG 553 | Night Camo (Battle-Scarred)
+  paint_index: 1270
+- market_hash_name: SG 553 | Barricade (Factory New)
+  paint_index: 861
+- market_hash_name: SG 553 | Barricade (Minimal Wear)
+  paint_index: 861
+- market_hash_name: SG 553 | Barricade (Field-Tested)
+  paint_index: 861
+- market_hash_name: SG 553 | Barricade (Well-Worn)
+  paint_index: 861
+- market_hash_name: SG 553 | Barricade (Battle-Scarred)
+  paint_index: 861
+- market_hash_name: SG 553 | Bleached (Factory New)
+  paint_index: 934
+- market_hash_name: SG 553 | Bleached (Minimal Wear)
+  paint_index: 934
+- market_hash_name: SG 553 | Bleached (Field-Tested)
+  paint_index: 934
+- market_hash_name: SG 553 | Bleached (Well-Worn)
+  paint_index: 934
+- market_hash_name: SG 553 | Bleached (Battle-Scarred)
+  paint_index: 934
+- market_hash_name: SG 553 | Gator Mesh (Factory New)
+  paint_index: 243
+- market_hash_name: SG 553 | Gator Mesh (Minimal Wear)
+  paint_index: 243
+- market_hash_name: SG 553 | Gator Mesh (Field-Tested)
+  paint_index: 243
+- market_hash_name: SG 553 | Gator Mesh (Well-Worn)
+  paint_index: 243
+- market_hash_name: SG 553 | Gator Mesh (Battle-Scarred)
+  paint_index: 243
+- market_hash_name: SG 553 | Fallout Warning (Factory New)
+  paint_index: 378
+- market_hash_name: SG 553 | Fallout Warning (Minimal Wear)
+  paint_index: 378
+- market_hash_name: SG 553 | Fallout Warning (Field-Tested)
+  paint_index: 378
+- market_hash_name: SG 553 | Fallout Warning (Well-Worn)
+  paint_index: 378
+- market_hash_name: SG 553 | Fallout Warning (Battle-Scarred)
+  paint_index: 378
+- market_hash_name: SG 553 | Aloha (Factory New)
+  paint_index: 702
+- market_hash_name: SG 553 | Aloha (Minimal Wear)
+  paint_index: 702
+- market_hash_name: SG 553 | Aloha (Field-Tested)
+  paint_index: 702
+- market_hash_name: SG 553 | Aloha (Well-Worn)
+  paint_index: 702
+- market_hash_name: SG 553 | Aloha (Battle-Scarred)
+  paint_index: 702
+- market_hash_name: SG 553 | Wave Spray (Factory New)
+  paint_index: 186
+- market_hash_name: SG 553 | Wave Spray (Minimal Wear)
+  paint_index: 186
+- market_hash_name: SG 553 | Wave Spray (Field-Tested)
+  paint_index: 186
+- market_hash_name: SG 553 | Wave Spray (Well-Worn)
+  paint_index: 186
+- market_hash_name: SG 553 | Wave Spray (Battle-Scarred)
+  paint_index: 186
+- market_hash_name: SG 553 | Waves Perforated (Factory New)
+  paint_index: 136
+- market_hash_name: SG 553 | Waves Perforated (Minimal Wear)
+  paint_index: 136
+- market_hash_name: SG 553 | Waves Perforated (Field-Tested)
+  paint_index: 136
+- market_hash_name: SG 553 | Waves Perforated (Well-Worn)
+  paint_index: 136
+- market_hash_name: SG 553 | Waves Perforated (Battle-Scarred)
+  paint_index: 136
 - market_hash_name: SSG 08 | Acid Fade (Factory New)
   paint_index: 253
 - market_hash_name: SSG 08 | Carbon Fiber (Factory New)

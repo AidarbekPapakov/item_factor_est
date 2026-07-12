@@ -1,7 +1,8 @@
-# Phase 0 data backfill (batch 2)
+# Phase 0 data backfill (batch 8)
 # Excludes shotguns & machineguns, souvenir, skins already in starter_skins.yaml (batch 0).
 # Filtering criteria: >500 total listings across all exteriors, >5 cents.
 # StatTrak variants are omitted
+# Includes: R8 Revolver, Tec-9, USP-S
 skins:
 - market_hash_name: R8 Revolver | Amber Fade (Factory New)
   paint_index: 523

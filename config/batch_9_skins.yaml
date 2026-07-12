@@ -1,7 +1,8 @@
-# Phase 0 data backfill (batch 2)
+# Phase 0 data backfill (batch 9)
 # Excludes shotguns & machineguns, souvenir, skins already in starter_skins.yaml (batch 0).
 # Filtering criteria: >500 total listings across all exteriors, >5 cents.
 # StatTrak variants are omitted
+# Includes: PP-Bizon, MAC-10, MP5-SD
 skins:
 - market_hash_name: PP-Bizon | Breaker Box (Minimal Wear)
   paint_index: 1083
