@@ -139,6 +139,10 @@ services:
       - ./clickhouse-data:/var/lib/clickhouse
       - ./sql:/docker-entrypoint-initdb.d
       - ./clickhouse-config:/etc/clickhouse-server/users.d
+    networks:
+      default:
+        aliases:
+          - clickhouse_csfloat_ingest_host
     ulimits:
       nproc: 65535
       nofile:
