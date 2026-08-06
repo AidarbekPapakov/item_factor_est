@@ -27,7 +27,7 @@ config: Dict[str, str] = {
 
 @dag(
     dag_id="csfloat_ingest",
-    schedule="@once",
+    schedule="@daily",
     start_date=datetime(2026, 1, 1),
     catchup=False,
     max_active_tasks=2,  # serialize: concurrent tasks would race on shared rate-limit bucket
@@ -42,9 +42,18 @@ config: Dict[str, str] = {
 def csfloat_ingest_dag():
 
     @task()
-    def get_skins() -> List[Dict[str, Any]]:
+    def get_skins(**context) -> List[Dict[str, Any]]:
+
+        data_interval_end: datetime = context['data_interval_end']
+        day_num: int = int(curr_day) if (isinstance(curr_day := data_interval_end.day, str)) else curr_day
+
+        bathc_file_pattern: str = 'batch'
+
+        batch_files_num: int = len([f for f in os.listdir(SKINS_FOLDER_PATH) if bathc_file_pattern in f])
+        batch_file_to_choose: int = day_num%batch_files_num
 
         skins_file: str = os.path.join(SKINS_FOLDER_PATH, Variable.get(config['skins_file']))
+        skins_file = skins_file.format(N=batch_file_to_choose)
 
         log.info(f"Processing {os.path.split(skins_file)[-1]}")
 
@@ -53,6 +62,7 @@ def csfloat_ingest_dag():
 
     @task()
     def ingest_skin(skin: Dict[str, Any], **context) -> Dict[str, Any]:
+            
         data_interval_end: datetime = context['data_interval_end']
         snapshot_date: str = data_interval_end.strftime("%Y-%m-%d %H:%M:%S")
 
