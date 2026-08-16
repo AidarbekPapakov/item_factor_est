@@ -1,0 +1,21 @@
+SELECT
+    price,
+    ref_base_price,
+    ref_predicted_price,
+    float_value,
+    wear_name,
+    def_index,
+    paint_index,
+    paint_seed,
+    rarity,
+    is_stattrak,
+    is_souvenir,
+    stickers,
+    keychain_ref_price,
+    fade_pct,
+    fade_rank,
+    fade_type,
+    blue_gem,
+    market_hash_name,
+    sold_at
+FROM default.csfloat_sales FINAL
