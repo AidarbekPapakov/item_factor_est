@@ -27,5 +27,4 @@ quarantine/
 .idea/
 .vscode/
 
-*.md
 clickhouse-config/
