@@ -31,7 +31,7 @@ This is a personal / portfolio project, not a production service.
 
 ## Results (from `notebooks/03_train.ipynb`)
 
-Both targets are log-transformed (see `docs/target_choice.md` for why). Trivial
+Both targets are log-transformed (see "Target transform decision" in `CLAUDE.md` for why). Trivial
 baseline = trusting the denominator at face value (predict 0 in log-space).
 
 | Model | Target | RMSE (log) | MAPE (back-transformed) |
@@ -59,9 +59,6 @@ notebooks/
   01_target_eda.ipynb    target distribution analysis -> log-transform decision
   02_feature_eda.ipynb   feature distributions, correlations -> feature set
   03_train.ipynb         Models A/B/C training + comparison
-docs/
-  target_choice.md      log-vs-raw decision with full distribution stats
-  status.md             point-in-time project status snapshot
 tests/
   test_schema_drift.py   fails loudly if CSFloat changes the sales-history response shape
 ```
