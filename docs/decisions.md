@@ -1,9 +1,9 @@
 # Decisions
 
-Recovered reference material that used to live in an untracked `CLAUDE.md`.
-Covers the target transform call, the paint-seed/pattern lookup rationale, and
-the project's architecture. Source of truth for anything the README or
-notebooks point here for.
+Recovered architectural reference material that README and notebook references
+had pointed at but that was never committed to this repo. Covers the target
+transform call, the paint-seed/pattern lookup rationale, and the project's
+architecture.
 
 ## Target transform decision
 
