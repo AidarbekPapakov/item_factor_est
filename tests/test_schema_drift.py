@@ -26,6 +26,11 @@ FIXTURE = Path(__file__).parent / "fixtures" / "csfloat_sales_sample.json"
 
 @pytest.fixture
 def sample_rows() -> list[dict]:
+    if not FIXTURE.exists():
+        pytest.skip(
+            f"{FIXTURE} is missing — this test needs a captured (and anonymized) "
+            "CSFloat sales-history response to run. See README for how to add it."
+        )
     return json.loads(FIXTURE.read_text())
 
 

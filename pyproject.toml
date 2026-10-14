@@ -7,3 +7,8 @@ extend-exclude = ["dags", "test_csfloat_api.py", "notebooks"]
 
 [tool.ruff.lint]
 select = ["E", "F", "W", "B", "I", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+# Restrict collection to tests/ — plain `pytest` from repo root otherwise walks
+# into clickhouse-data/ (bind-mounted, root-owned) and dies on PermissionError.
+testpaths = ["tests"]
