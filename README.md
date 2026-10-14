@@ -34,11 +34,15 @@ This is a personal / portfolio project, not a production service.
 Both targets are log-transformed (see "Target transform decision" in `docs/decisions.md` for why). Trivial
 baseline = trusting the denominator at face value (predict 0 in log-space).
 
-| Model | Target | RMSE (log) | MAPE (back-transformed) |
+| Model | Target | RMSE (log) | MdAPE (back-transformed) |
 |-------|--------|-----------:|-------------------------:|
 | Trivial baseline | — | 0.3945 | 6.90% |
 | Model B | `price / ref_base_price` | 0.2707 | 9.38% |
 | Model C | `price / ref_predicted_price` | 0.2703 | 7.95% |
+
+MdAPE (median, not mean) is used because the back-transformed percentage error
+is itself right-skewed, and a single large miss on an apex listing would
+otherwise dominate a mean-based score.
 
 Model C beats the trivial "trust CSFloat" baseline on RMSE, i.e. there's
 learnable residual signal CSFloat's public appraiser doesn't capture — see
