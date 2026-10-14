@@ -31,7 +31,7 @@ This is a personal / portfolio project, not a production service.
 
 ## Results (from `notebooks/03_train.ipynb`)
 
-Both targets are log-transformed (see "Target transform decision" in `CLAUDE.md` for why). Trivial
+Both targets are log-transformed (see "Target transform decision" in `docs/decisions.md` for why). Trivial
 baseline = trusting the denominator at face value (predict 0 in log-space).
 
 | Model | Target | RMSE (log) | MAPE (back-transformed) |
@@ -100,5 +100,5 @@ Airflow admin creds if you do run this repo's own Airflow stack).
   registry (Postgres backend, MinIO artifact store) that the retrain DAG logs
   to. UI at http://localhost:5000.
 
-See `CLAUDE.md` for full architectural context, data source details, and
-feature engineering notes.
+See `docs/decisions.md` for architectural context and the target transform /
+pattern lookup rationale.
