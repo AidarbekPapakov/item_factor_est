@@ -1,6 +1,6 @@
 import json
 import os
-from datetime import datetime, timezone
+from datetime import UTC, datetime
 from pathlib import Path
 from typing import Any
 
@@ -14,7 +14,7 @@ QUARANTINE = Path(os.environ.get("QUARANTINE_PATH", "quarantine"))
 
 
 def now_utc() -> str:
-    return datetime.now(timezone.utc).isoformat()
+    return datetime.now(UTC).isoformat()
 
 
 def flatten_data(row: SaleRow, snapshot_date: str) -> dict[str, Any]:
@@ -62,7 +62,7 @@ def flatten_data(row: SaleRow, snapshot_date: str) -> dict[str, Any]:
 
 def quarantine(raw: dict[str, Any], error: Exception) -> None:
     QUARANTINE.mkdir(parents=True, exist_ok=True)
-    ts = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%f")
+    ts = datetime.now(UTC).strftime("%Y%m%dT%H%M%S%f")
     path = QUARANTINE / f"sale_{ts}.json"
     payload = {"error": str(error), "raw": raw}
     path.write_text(json.dumps(payload, indent=2, default=str))
@@ -95,7 +95,9 @@ def insert_sales(
 ) -> None:
     if not rows:
         return
-    client = clickhouse_connect.get_client(host=host, port=port, database=database, username=user, password=password)
+    client = clickhouse_connect.get_client(
+        host=host, port=port, database=database, username=user, password=password
+    )
     try:
         column_names = list(rows[0].keys())
         data = [[r[col] for col in column_names] for r in rows]
