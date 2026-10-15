@@ -12,3 +12,7 @@ select = ["E", "F", "W", "B", "I", "UP", "SIM"]
 # Restrict collection to tests/ — plain `pytest` from repo root otherwise walks
 # into clickhouse-data/ (bind-mounted, root-owned) and dies on PermissionError.
 testpaths = ["tests"]
+# src/ isn't pip-installed, so tests importing `from src...` need the repo
+# root on sys.path explicitly (pytest's rootdir insertion only adds tests/,
+# not its parent, when tests/ has no __init__.py).
+pythonpath = ["."]
