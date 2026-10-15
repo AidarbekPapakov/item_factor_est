@@ -1,4 +1,5 @@
 import json
+
 import numpy as np
 import polars as pl
 
@@ -118,15 +119,17 @@ def build_features(df: pl.DataFrame) -> pl.DataFrame:
         # Keychain
         "keychain_ref_price",
         # Categoricals
-        "def_index", # <- basically `def_index` serves as numeric representation of weapon_name string
+        "def_index", # <- basically `def_index` serves as numeric representation of weapon_name
+                     # string
         "paint_seed",
-        "rarity", # <- numeric representation of rarity (Consumer grade, Industrial Grade, 08etc.)
+        "rarity", # <- numeric representation of rarity (Consumer grade, Industrial Grade,
+                  # 08etc.)
 
-        # For now, we explicitly ignore market_hash_name as it data leakage feature that limits us from
-        # generalizing to skins not currently in the dataset (simply ignored by config files or yet unreleased), 
-        # and the model will fail on such instances.
+        # For now, we explicitly ignore market_hash_name as it data leakage feature that limits
+        # us from generalizing to skins not currently in the dataset (simply ignored by config
+        # files or yet unreleased), and the model will fail on such instances.
         # "paint_index",
-        
+
         "wear_name",
         "is_stattrak",
         "is_souvenir",
@@ -136,8 +139,8 @@ def build_features(df: pl.DataFrame) -> pl.DataFrame:
         # For temporal splitting (not a feature used for modeling)
         "sold_at",
 
-        # We ignore `market_hash_name` for the same reason as we do paint_index for. It gives away an information
-        # a model should not know.
+        # We ignore `market_hash_name` for the same reason as we do paint_index for. It gives
+        # away an information a model should not know.
         # "market_hash_name",
     ]
     return df.select(feature_cols)

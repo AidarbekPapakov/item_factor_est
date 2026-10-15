@@ -1,5 +1,5 @@
 import time
-from typing import List, Dict, Any
+from typing import Any
 from urllib.parse import quote
 
 import httpx
@@ -43,14 +43,14 @@ def fetch_sales_history(
     market_hash_name: str,
     paint_index: int | None,
     api_key: str,
-) -> List[Dict[str, Any]]:
+) -> list[dict[str, Any]]:
     """Return all sales history entries for one skin variant.
 
     paint_index=0 is treated by the API as "no filter"; pass None to omit the
     param entirely (same behaviour, avoids the confusing 0-case).
     """
     url = f"{BASE_URL}/history/{quote(market_hash_name)}/sales"
-    params: Dict[str, int] = {}
+    params: dict[str, int] = {}
     if paint_index:
         params["paint_index"] = paint_index
 

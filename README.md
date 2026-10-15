@@ -10,7 +10,9 @@ This is a personal / portfolio project, not a production service.
 
 1. **Ingest.** A daily job pulls CSFloat's undocumented `/history/{name}/sales`
    endpoint for a rotating batch of ~6,900 skins and writes cleared sales into
-   ClickHouse (`default.csfloat_sales`).
+   ClickHouse (`default.csfloat_sales`). Since the endpoint is undocumented,
+   usage stays within personal research use — one snapshot per item per day,
+   backing off on rate-limit response headers, no redistribution of raw data.
 2. **Feature engineering.** `src/features/build_features.py` turns raw sale rows
    into model-ready features: float position within its wear bucket, sticker
    value aggregation, fade/blue-gem percentages (CSFloat computes these for us),
@@ -31,14 +33,18 @@ This is a personal / portfolio project, not a production service.
 
 ## Results (from `notebooks/03_train.ipynb`)
 
-Both targets are log-transformed (see "Target transform decision" in `CLAUDE.md` for why). Trivial
+Both targets are log-transformed (see "Target transform decision" in `docs/decisions.md` for why). Trivial
 baseline = trusting the denominator at face value (predict 0 in log-space).
 
-| Model | Target | RMSE (log) | MAPE (back-transformed) |
+| Model | Target | RMSE (log) | MdAPE (back-transformed) |
 |-------|--------|-----------:|-------------------------:|
 | Trivial baseline | — | 0.3945 | 6.90% |
 | Model B | `price / ref_base_price` | 0.2707 | 9.38% |
 | Model C | `price / ref_predicted_price` | 0.2703 | 7.95% |
+
+MdAPE (median, not mean) is used because the back-transformed percentage error
+is itself right-skewed, and a single large miss on an apex listing would
+otherwise dominate a mean-based score.
 
 Model C beats the trivial "trust CSFloat" baseline on RMSE, i.e. there's
 learnable residual signal CSFloat's public appraiser doesn't capture — see
@@ -85,6 +91,17 @@ jupyter notebook notebooks/
 `.env.example` lists the required secrets (CSFloat API key, ClickHouse creds,
 Airflow admin creds if you do run this repo's own Airflow stack).
 
+## Testing
+
+```bash
+ruff check .
+pytest
+```
+
+Both run fully offline (no CSFloat API or ClickHouse calls). `tests/test_schema_drift.py`
+needs a captured CSFloat sales-history sample at `tests/fixtures/csfloat_sales_sample.json`;
+if that fixture isn't present, its tests `pytest.skip` with a clear reason instead of failing.
+
 ## Related projects
 
 - **`/home/aidar/projects/airflow`** — the Airflow instance that actually runs
@@ -95,10 +112,12 @@ Airflow admin creds if you do run this repo's own Airflow stack).
   repo's ClickHouse via the external Docker network `item_factor_est_default`
   (alias `clickhouse_csfloat_ingest_host`). `src/features/build_features.py` and
   `temporal_split.py` are copied there — **if you change them here, copy the
-  change over too**, they will otherwise silently drift apart.
+  change over too**, they will otherwise silently drift apart. **This repo's
+  `src/` is the source of truth**; the scheduled DAGs run from the separate
+  `airflow` project, not from here.
 - **`/home/aidar/projects/mlflow`** — the MLflow tracking server + model
   registry (Postgres backend, MinIO artifact store) that the retrain DAG logs
   to. UI at http://localhost:5000.
 
-See `CLAUDE.md` for full architectural context, data source details, and
-feature engineering notes.
+See `docs/decisions.md` for architectural context and the target transform /
+pattern lookup rationale.

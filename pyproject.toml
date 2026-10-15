@@ -1,0 +1,18 @@
+[tool.ruff]
+line-length = 100
+# Lint scope is src/ and tests/ (this cleanup's stated scope). dags/ is a
+# hand-synced copy of what actually runs in the separate airflow project, and
+# test_csfloat_api.py is a manual probe script — neither is covered here.
+extend-exclude = ["dags", "test_csfloat_api.py", "notebooks"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "B", "I", "UP", "SIM"]
+
+[tool.pytest.ini_options]
+# Restrict collection to tests/ — plain `pytest` from repo root otherwise walks
+# into clickhouse-data/ (bind-mounted, root-owned) and dies on PermissionError.
+testpaths = ["tests"]
+# src/ isn't pip-installed, so tests importing `from src...` need the repo
+# root on sys.path explicitly (pytest's rootdir insertion only adds tests/,
+# not its parent, when tests/ has no __init__.py).
+pythonpath = ["."]
